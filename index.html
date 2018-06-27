@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    html,
+    body {
+        margin: 0;
+        padding: 0;
+        background: #345983;
+    }
+
+    .content {
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: black;
+    }
+
+    h2 {
+        text-shadow: 10px 10px 0 #ddd;
+        font-size: 50px;
+    }
+</style>
+
+<body>
+
+    <div class="content">
+        <h2 class="text">Text Shadow</h2>
+    </div>
+
+
+
+    <script>
+        var content = document.querySelector('.content');
+        var text = document.querySelector('.text');
+        var run = 30;
+
+        function shadow(e) {
+            console.log(e);
+            var {
+                offsetWidth: width,
+                offsetHeight: height
+            } = content;
+            var {
+                offsetX: x,
+                offsetY: y
+            } = e;
+
+            if (this !== e.target) {
+                x = x + e.target.offsetLeft;
+                y = y + e.target.offsetTop;
+            }
+
+            var xRun = (x / width * run) - (run / 2);
+            var yRun = (y / height * run) - (run / 2);
+
+            text.style.textShadow = `${xRun}px ${yRun}px 0 #585940`
+            console.log(xRun);
+
+        }
+
+
+        content.addEventListener('mousemove', shadow);
+    </script>
+</body>
+
+</html>
